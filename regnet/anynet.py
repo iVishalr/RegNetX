@@ -47,7 +47,11 @@ class AnyNet(nn.Module):
             prev_w = w
         self.head = Head(prev_w, num_classes)
 
-    def forward(self, x):
+    def forward(self, x, y=None):
         for layer in self.children():
             x = layer(x)
-        return x
+
+        if y is not None:
+            loss = F.cross_entropy(x,y)
+
+        return x, loss
