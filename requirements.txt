@@ -1,4 +1,5 @@
 pytorch
+torchvision
 numpy
 tqdm
-tensorboard
+jupyter-notebook
