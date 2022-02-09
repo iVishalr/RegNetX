@@ -80,7 +80,54 @@ In AnyNetX(E) design space, it was observed that as stage widths wi increases, d
 
 Please refer to Section 3.3 in paper.
 
+# Training
+
+Import any of the following variants of RegNet using 
+
+```python
+from regnet import regnetx_002 as RegNet002
+from regnet import Xblock, Yblock # required if you want to use YBlock instead of Xblock. Refer to paper for more details on YBlock
+```
+
+RegNet variants available are:
+- regnetx_002
+- regnetx_004
+- regnetx_006
+- regnetx_008
+- regnetx_016
+- regnetx_032
+- regnetx_040
+- regnetx_064
+- regnetx_080
+- regnetx_120
+- regnetx_160
+- regnetx_320
+
+Import `TrainingConfig` and `Trainer` Classes from regnet and use them to train the model as follows
+
+```python
+from regnet import TrainingConfig, Trainer
+
+model = RegNet002(block=Xblock, num_classes=10)
+
+training_config = TrainingConfig(max_epochs=10, batch_size=128, learning_rate=3e-4, weight_decay=5e-4, ckpt_path="./regnet.pt")
+trainer = Trainer(model = model, train_dataset=train_dataset, test_dataset=test_dataset, config=training_config)
+trainer.train()
+```
+
+Note : you need not use TrainingConfig and Trainer classes if you want to write your own training loops. Just importing the respective models would suffice.
+
+# TODO
+
+- Test if model trains when using YBlocks
+- Implement model checkpointing for every 'x' epochs
+
 # References
+
+[1] https://github.com/signatrix/regnet
+
+[2] https://github.com/d-li14/regnet.pytorch
+
 
 ```
 @InProceedings{Radosavovic2020,
