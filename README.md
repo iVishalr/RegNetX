@@ -1,7 +1,7 @@
 # RegNet
 
 <p align="center">
-  Hello
+  <img src="https://github.com/iVishalr/RegNetX/blob/main/doc/designspace.png" alt="Designing Network Design Spaces" />
 </p>
 
 Pytorch Implementation of "Desigining Network Design Spaces", Radosavovic et al. CVPR 2020. 
@@ -23,10 +23,10 @@ Also RegNet models have been used as a backbone in Tesla FSD Stack.
 The basic structure of models in AnyNet design space consists of a simple Stem which is then followed by the network body that does majority of the computation and a final network head that predicts the class scores. The stem and head networks are kept as simple as possible. The network body consists of 4 stages that operate at progressively lower resolutions.
 
 <p align="center">
-  Hello
+  <img src="https://github.com/iVishalr/RegNetX/blob/main/doc/anynet.png" alt="AnyNet" />
 </p>
 
-Structure of network body is determined by block width `w`, network depth `d_i`, bottleneck ratio `b_i` and group widths `g`. Degrees of freedom at stage 'i' are number of blocks 'd_i' in each stage, block width 'w' and other block parameters such as stride, padding and so on.
+Structure of network body is determined by block width `w`, network depth `d_i`, bottleneck ratio `b_i` and group widths `g`. Degrees of freedom at stage 'i' are number of blocks `d` in each stage, block width `w` and other block parameters such as stride, padding and so on.
 
 Other models are obtained by refining the design space by adding more constraints on the above parameters. Design space is refined keeping the following things in mind :
 - Simplify structure of design space.
@@ -36,6 +36,11 @@ Other models are obtained by refining the design space by adding more constraint
 
 ### AnyNetX
 
+<p align="center">
+  <img src="https://github.com/iVishalr/RegNetX/blob/main/doc/xblock.png" alt="XBlock" />
+</p>
+
+
 - Uses XBlocks within each block of the network
 - Degrees of freedom in AnyNetX is 16
 - Each network has 4 stages
@@ -43,7 +48,7 @@ Other models are obtained by refining the design space by adding more constraint
 - bi ∈ {1,2,4}
 - gi ∈ {1,2,3,...,32}
 - wi <= 1024
-- di <=16
+- di <= 16
 
 ### AnyNetX(A)
 
