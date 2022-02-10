@@ -111,7 +111,7 @@ from regnet import TrainingConfig, Trainer
 model = RegNet002(block=Xblock, num_classes=10)
 
 training_config = TrainingConfig(max_epochs=10, batch_size=128, learning_rate=3e-4, weight_decay=5e-4, ckpt_path="./regnet.pt")
-trainer = Trainer(model = model, train_dataset=train_dataset, test_dataset=test_dataset, config=training_config)
+trainer = Trainer(model = model, train_dataset=train_dataset, test_dataset=test_dataset, configs=training_config)
 trainer.train()
 ```
 
