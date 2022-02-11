@@ -54,7 +54,7 @@ class Trainer:
     def train(self):
         model, config = self.model, self.configs
         raw_model = model.module if hasattr(model, "module") else model
-        optimizer = torch.optim.AdamW(model.parameters(), 
+        optimizer = torch.optim.Adam(model.parameters(), 
                                      lr=config.learning_rate, 
                                      weight_decay=config.weight_decay,
                                      betas=config.betas,

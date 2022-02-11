@@ -51,14 +51,14 @@ class SE(nn.Module):
     Squeeze-and-Excitation (SE) Block
     """
 
-    def __init__(self, in_channels, out_channels) -> None:
+    def __init__(self, in_channels, out_channels, se_ratio) -> None:
         super(SE, self).__init__()
-
+        se_channels = int(round(in_channels * se_ratio))
         self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
         self.fc = nn.Sequential(
-            nn.Conv2d(in_channels, out_channels, 1, bias=True),
+            nn.Conv2d(in_channels, se_channels, 1, bias=True),
             nn.ReLU(),
-            nn.Conv2d(out_channels, out_channels, 1, bias=True),
+            nn.Conv2d(se_channels, out_channels, 1, bias=True),
             nn.Sigmoid()
         )
     
@@ -130,8 +130,7 @@ class YBlock(nn.Module):
         self.bn2 = nn.BatchNorm2d(inter_channels)
 
         if se_ratio is not None:
-            se_channels = int(round(in_channels * se_ratio))
-            self.se = SE(inter_channels, se_channels)
+            self.se = SE(inter_channels, inter_channels, se_ratio)
 
         self.conv3 = nn.Conv2d(inter_channels, out_channels, kernel_size=1, stride=1, bias=False)
         self.bn3 = nn.BatchNorm2d(out_channels)
