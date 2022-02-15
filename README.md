@@ -119,7 +119,6 @@ Note : you need not use TrainingConfig and Trainer classes if you want to write 
 
 # TODO
 
-- Test if model trains when using YBlocks
 - Implement model checkpointing for every 'x' epochs
 
 # References
