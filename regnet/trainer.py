@@ -37,6 +37,7 @@ class Trainer:
         self.train_dataset = train_dataset
         self.test_dataset = test_dataset
         self.configs = configs
+        self.device = torch.device("cpu")
 
         if self.configs.device == "cuda":
             self.device = torch.cuda.current_device()
